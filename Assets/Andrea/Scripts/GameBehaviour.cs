@@ -10,6 +10,9 @@ public class GameBehaviour : MonoBehaviour {
     [SerializeField]
     private Text[] spawnTexts;
 
+    [SerializeField]
+    private GameObject[] shootersObjects;
+
 
     private Text spawn1text;
     private Text spawn2text;
@@ -27,6 +30,7 @@ public class GameBehaviour : MonoBehaviour {
         spawn2text = spawnTexts[1];
         spawn3text = spawnTexts[2];
         spawn4text = spawnTexts[3];
+
 
         //mainInput.onValueChanged.AddListener(delegate { OnTextChange(); });
     }
@@ -51,7 +55,9 @@ public class GameBehaviour : MonoBehaviour {
                 if(spawnTexts[i].text == inputStringUser)
                 {
                     Debug.Log("TA BIEN ESCRITO");
+                    shootersObjects[i].GetComponent<ShooterBehaviour>().Shot();
                 }
+           
 
             }
 

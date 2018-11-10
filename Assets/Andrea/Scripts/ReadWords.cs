@@ -37,6 +37,11 @@ public class ReadWords : MonoBehaviour {
 		
 	}
 
+    public string[] GetWordInFile()
+    {
+        return words;
+    }
+
 
     void readTextFile()
     {

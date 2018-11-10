@@ -64,6 +64,7 @@
     <Compile Include="Assets\Andrea\Scripts\EnemyBehaviour.cs" />
     <Compile Include="Assets\Andrea\Scripts\GameBehaviour.cs" />
     <Compile Include="Assets\Andrea\Scripts\ReadWords.cs" />
+    <Compile Include="Assets\Andrea\Scripts\ShooterBehaviour.cs" />
     <Compile Include="Assets\Andrea\Scripts\SpawnEnemies.cs" />
     <Compile Include="Assets\Blasquete\Scripts\GameController.cs" />
     <Compile Include="Assets\Blasquete\Scripts\Jump.cs" />
