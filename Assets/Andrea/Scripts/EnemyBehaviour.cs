@@ -9,7 +9,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        transform.Rotate(0, -90, 0);
 	}
 	
 	// Update is called once per frame
@@ -21,7 +21,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void MoveEnemy()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * speed);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
 
     }
 }

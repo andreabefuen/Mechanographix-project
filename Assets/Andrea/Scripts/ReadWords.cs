@@ -8,27 +8,33 @@ public class ReadWords : MonoBehaviour {
 
     
 
-    private string[] words  = new string[6];
+    public string[] words  = new string[6];
 
-	// Use this for initialization
-	void Start () {
+
+    private void Awake()
+    {
         string text = textFile.text;
         //Debug.Log(text);
 
-        
+
 
 
         for (int i = 0; i < 6; i++)
         {
-            string w = text.Split('\n')[i];
-
+            string w = text.Split(' ')[i];
+            w.Remove(w.Length-1);
             words[i] = w;
         }
 
-        for (int i = 0; i < words.Length; i++)
-        {
-            Debug.Log("Palabra " + i + " " + words[i]);
-        }
+       // for (int i = 0; i < words.Length; i++)
+       // {
+       //     Debug.Log("Palabra " + i + " " + words[i]);
+       // }
+    }
+
+    // Use this for initialization
+    void Start () {
+        
 
     }
 
@@ -40,6 +46,15 @@ public class ReadWords : MonoBehaviour {
     public string[] GetWordInFile()
     {
         return words;
+    }
+
+    public string ReturnRandomWord()
+    {
+        int index = Random.Range(0, words.Length);
+
+        //Debug.Log("PALABRA RANDOM: " + words[index]);
+
+        return words[index];
     }
 
 
