@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Fran/Pruebas.unity
+- path: Assets/Mario/Scenes/EscenaMarioMenu.unity
   isLoaded: 1
   isActive: 1
