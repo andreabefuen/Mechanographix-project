@@ -20,6 +20,9 @@ public class CharacterMovement : MonoBehaviour {
         if ((transform.position.x != goal.x) || (transform.position.z != goal.z))
         {
             transform.position = Vector3.MoveTowards(transform.position, goal, Time.deltaTime * speed);
+            Vector3 direction = goal - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 0.1f);
             moving = true;
         }
         else if (moving)
