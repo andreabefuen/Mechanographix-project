@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class TriggerDetection : MonoBehaviour
 {
     public KeyCode _key;
-    public Button dialogBox;
+    public GameObject dialogBox;
 
     private void OnTriggerEnter(Collider other)
     {
-        dialogBox.enabled = true;
+        dialogBox.SetActive(true);
         dialogBox.GetComponentInChildren<Text>().text = "si pulsas la tecla: " + _key.ToString() + " entrarás al minijuego";
     }
 
@@ -20,7 +20,7 @@ public class TriggerDetection : MonoBehaviour
         print("hola");
         if (other.GetComponent<CharacterMovement>().GetMoving() == false) {
             if (Input.GetKeyDown(_key)) {
-                dialogBox.enabled = false;
+                dialogBox.SetActive(false);
                 SceneManager.LoadScene("EscenaPrueba2");
             }
         }
@@ -28,7 +28,7 @@ public class TriggerDetection : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        dialogBox.enabled = false;
+        dialogBox.SetActive(false);
     }
 
 }
