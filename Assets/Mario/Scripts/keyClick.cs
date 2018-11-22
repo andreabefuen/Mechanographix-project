@@ -6,15 +6,14 @@ using UnityEngine.UI;
 public class keyClick : MonoBehaviour {
 
     private GameObject character;
-    private Color DefaultColor;
-    public Color PressedColor;
+    private Material DefaultMaterial;
+    public Material PressedMaterial;
     public KeyCode _key;   
-    public float FadeColorTime = 0.1f;
 
     // Use this for initialization
     void Start () {
         character = GameObject.FindGameObjectWithTag("Player");
-        DefaultColor = GetComponent<Renderer>().material.color;
+        DefaultMaterial = GetComponent<Renderer>().material;
 	}
 	
 	// Update is called once per frame
@@ -22,27 +21,14 @@ public class keyClick : MonoBehaviour {
         if (Input.GetKeyDown(_key))
         {
             //Click the button
-            GetComponent<Renderer>().material.color = PressedColor;
-            character.GetComponent<CharacterMovement>().MoveCharacterTo(transform.position);//hacer que el player se mueva a la posicion de la "tecla"
+            GetComponent<Renderer>().material = PressedMaterial;
+            character.GetComponent<CharacterMovement>().MoveCharacterTo(transform.position); //hacer que el player se mueva a la posicion de la "tecla"
         }
         else if (Input.GetKeyUp(_key))
         {
-            GetComponent<Renderer>().material.color = DefaultColor;
+            GetComponent<Renderer>().material = DefaultMaterial;
         }
 
     }
 
-    void FadeToColor(Color startColor, Color endColor)
-    {
-        GetComponent<Renderer>().material.color = Color.Lerp(startColor, endColor, FadeColorTime);
-    }
-
-
-    void OnGUI()
-    {
-        Event e = Event.current;
-        if (e.isKey)
-            Debug.Log("Detected key code: " + e.keyCode);
-
-    }
 }
