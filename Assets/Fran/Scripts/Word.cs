@@ -9,7 +9,7 @@ public class Word {
     private int typeIndex;
 
     private WordDisplay display;
-
+    
     public Word (string _word, WordDisplay _display)
     {
         word = _word;
@@ -40,6 +40,7 @@ public class Word {
         if(wordTyped)
         {
             display.RemoveWord();
+
             //remove word on screen
         }
         return wordTyped;
