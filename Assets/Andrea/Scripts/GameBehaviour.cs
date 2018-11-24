@@ -7,6 +7,8 @@ public class GameBehaviour : MonoBehaviour {
 
     public InputField mainInput;
 
+    public Text timerText;
+
     [SerializeField]
     private Text[] spawnTexts;
 
@@ -15,7 +17,7 @@ public class GameBehaviour : MonoBehaviour {
 
 
 
-
+    private float timer;
 
     private string inputStringUser;
 
@@ -40,6 +42,7 @@ public class GameBehaviour : MonoBehaviour {
 
     private void Start()
     {
+        timer = 0;
 
         for (int i = 0; i < spawnTexts.Length; i++)
         {
@@ -63,6 +66,9 @@ public class GameBehaviour : MonoBehaviour {
 
     private void Update()
     {
+        timer += Time.deltaTime;
+        timerText.text = "TIMER: " + (int) timer;
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             inputStringUser = mainInput.text;
