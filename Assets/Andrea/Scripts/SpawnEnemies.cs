@@ -7,13 +7,15 @@ public class SpawnEnemies : MonoBehaviour {
     [SerializeField]
     private Transform[] spawnPoints;
 
+    public float spawnTime;
+
     public GameObject enemy;
 
 	// Use this for initialization
 	void Start () {
 
         enemy.SetActive(true);
-        InvokeRepeating("SpawnTheEnemy", 2.5f, 5f);
+        InvokeRepeating("SpawnTheEnemy", 2.5f, spawnTime);
 
 
 
