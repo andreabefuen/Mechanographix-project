@@ -6,9 +6,10 @@ public class ReadWords : MonoBehaviour {
 
     public TextAsset textFile;
 
-    
+    public int cantidadPalabras;
 
-    public string[] words  = new string[6];
+    [SerializeField]
+    private string[] words;
 
 
     private void Awake()
@@ -16,10 +17,11 @@ public class ReadWords : MonoBehaviour {
         string text = textFile.text;
         //Debug.Log(text);
 
+        words = new string[cantidadPalabras];
 
 
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < cantidadPalabras; i++)
         {
             string w = text.Split(' ')[i];
             w.Remove(w.Length-1);

@@ -17,6 +17,13 @@ public class EnemyBehaviour : MonoBehaviour {
 
         MoveEnemy();
 
+        if (transform.position.x < -12f)
+        {
+            //Daño
+            GameBehaviour.Score -= 200;
+            Destroy(this.gameObject);
+        }
+
     }
 
     void MoveEnemy()

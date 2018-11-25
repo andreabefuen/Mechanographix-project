@@ -24,6 +24,7 @@ public class ShooterBehaviour : MonoBehaviour {
             {
                 Debug.Log("Le has dado");
                 Destroy (raycastHit.collider.gameObject, 0.5f);
+                GameBehaviour.Score += 100;
                 
             }
         }

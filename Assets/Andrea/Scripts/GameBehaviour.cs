@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameBehaviour : MonoBehaviour {
 
+    public static int Score;
+    public Text scoreText;
+
     public InputField mainInput;
 
     public Text timerText;
@@ -68,6 +71,8 @@ public class GameBehaviour : MonoBehaviour {
     {
         timer += Time.deltaTime;
         timerText.text = "TIMER: " + (int) timer;
+
+        scoreText.text = "SCORE: " + Score;
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
