@@ -11,9 +11,17 @@ public class WordManager : MonoBehaviour {
 
     private bool hasActiveWord;
     private Word activeWord;
- 	void Start () {
 
-        for(int i = 0; i < cantidad; i++)
+    public GameObject Interseccion;
+
+    private void Awake()
+    {
+        Interseccion = GameObject.FindGameObjectWithTag("StartingGroup");
+    }
+
+    void Start () {
+
+        for(int i = 1; i < cantidad+1; i++)
         {
             AddWord(i);
         }
@@ -24,8 +32,8 @@ public class WordManager : MonoBehaviour {
 
     public void AddWord(int num)
     {
-
-        Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord(num));
+        string cadena = "point" + num.ToString();
+        Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord(Interseccion.transform.Find("cadena")));
 
         words.Add(word);
 
@@ -69,6 +77,8 @@ public class WordManager : MonoBehaviour {
         {
             hasActiveWord = false;
             words.Remove(activeWord);
+
+
         }
     }
 }

@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void MovePlayer(Vector3 movePoint)
+    public void MovePlayer(Vector3 movePoint)
     {
         player.Translate(Vector3.Lerp(player.position, movePoint, Time.deltaTime));
 

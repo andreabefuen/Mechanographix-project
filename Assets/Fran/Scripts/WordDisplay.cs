@@ -24,6 +24,8 @@ public class WordDisplay : MonoBehaviour {
     public void RemoveWord()
     {
         Destroy(gameObject);
+
+
     }
 
     public void ResetWord()
