@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class keyClick : MonoBehaviour {
 
     private GameObject character;
-    private Material DefaultMaterial;
-    public Material PressedMaterial;
+    private Renderer rend;
+    [SerializeField]
+    private Color pressedColor;
+    [SerializeField]
     public KeyCode _key;   
 
     // Use this for initialization
     void Start () {
         character = GameObject.FindGameObjectWithTag("Player");
-        DefaultMaterial = GetComponent<Renderer>().material;
+        rend = GetComponent<Renderer>();
 	}
 	
 	// Update is called once per frame
@@ -21,12 +23,12 @@ public class keyClick : MonoBehaviour {
         if (Input.GetKeyDown(_key))
         {
             //Click the button
-            GetComponent<Renderer>().material = PressedMaterial;
+            rend.material.color = pressedColor;
             character.GetComponent<CharacterMovement>().MoveCharacterTo(transform.position); //hacer que el player se mueva a la posicion de la "tecla"
         }
         else if (Input.GetKeyUp(_key))
         {
-            GetComponent<Renderer>().material = DefaultMaterial;
+            rend.material.color = Color.white;
         }
 
     }
