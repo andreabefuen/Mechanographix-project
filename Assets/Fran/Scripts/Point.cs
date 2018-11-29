@@ -8,8 +8,8 @@ public class Point : MonoBehaviour
 
     Transform position;
     public Transform siguiente;
-    public string movTypeString;
-    Movement movType;
+
+    public Movimiento movType;
 
     
 
@@ -21,7 +21,7 @@ public class Point : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        movType = (Movement)System.Enum.Parse(typeof (Movement), movTypeString);
+
     }
 
     // Update is called once per frame

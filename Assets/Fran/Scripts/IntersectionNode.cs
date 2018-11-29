@@ -2,6 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+[System.Serializable]
+public enum Movimiento
+{
+    SALTAR,
+    SUBIR,
+    CAER,
+    ANDAR
+};
+
+
+
 public class IntersectionNode:MonoBehaviour
 {
     Point punto1, punto2, punto3;
@@ -10,33 +23,28 @@ public class IntersectionNode:MonoBehaviour
 
     PlayerMovement PlayerMov;
 
-    public enum movimiento
-    {
-        SALTO,
-        SUBIR,
-        CAER,
-        ANDAR
-    };
     
 
-    void Move(movimiento mov)
+    
+
+    void Move(Movimiento mov)
     {
         switch (mov)
         {
-            case movimiento.SALTO:
+            case Movimiento.SALTAR:
                 break;
 
 
-            case movimiento.ANDAR:
+            case Movimiento.ANDAR:
                 PlayerMov.MovePlayer(punto1.getPosition());
                 break;
 
 
-            case movimiento.CAER:
+            case Movimiento.CAER:
                 break;
 
 
-            case movimiento.SUBIR:
+            case Movimiento.SUBIR:
                 break;
 
 
