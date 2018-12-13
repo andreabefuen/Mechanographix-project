@@ -25,7 +25,7 @@ public class BalaBehaviour : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        sphere.localEulerAngles = new Vector3 (0,0, sphere.localEulerAngles.z + speed * Time.deltaTime);
+        sphere.localEulerAngles = new Vector3 (0,0, sphere.localEulerAngles.z + speed * Time.deltaTime * 30);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +34,7 @@ public class BalaBehaviour : MonoBehaviour
         {
             GameBehaviour.Score += 100;
             Destroy(other.gameObject, 0.5f);
+            Destroy(this.gameObject, 0.5f);
         }
     }
 }
