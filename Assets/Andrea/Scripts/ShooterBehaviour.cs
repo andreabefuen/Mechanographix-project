@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class ShooterBehaviour : MonoBehaviour {
 
+    public GameObject bala;
+
+    public Transform positionDisparo;
+
 	// Use this for initialization
 	void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
@@ -16,18 +20,21 @@ public class ShooterBehaviour : MonoBehaviour {
 
     public void Shot()
     {
+        GameObject aux = Instantiate(bala);
+        aux.transform.position = positionDisparo.position;
+        Debug.Log(positionDisparo.transform.position);
         RaycastHit raycastHit;
         
-        if(Physics.Raycast(transform.position, transform.right, out raycastHit))
-        {
-            if(raycastHit.transform.tag == "Enemy")
-            {
-                Debug.Log("Le has dado");
-                Destroy (raycastHit.collider.gameObject, 0.5f);
-                GameBehaviour.Score += 100;
-                
-            }
-        }
+       // if(Physics.Raycast(transform.position, transform.forward, out raycastHit))
+       // {
+       //     if(raycastHit.transform.tag == "Enemy")
+       //     {
+       //         Debug.Log("Le has dado");
+       //         Destroy (raycastHit.collider.gameObject, 1.5f);
+       //         GameBehaviour.Score += 100;
+       //         
+       //     }
+       // }
 
         //Debug.Log("PIUM");
 

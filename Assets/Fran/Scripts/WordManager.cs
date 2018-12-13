@@ -33,7 +33,7 @@ public class WordManager : MonoBehaviour {
     public void AddWord(int num)
     {
         string cadena = "point" + num.ToString();
-        Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord(Interseccion.transform.Find("cadena")));
+        Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord(Interseccion.transform.Find(cadena)));
 
         words.Add(word);
 
