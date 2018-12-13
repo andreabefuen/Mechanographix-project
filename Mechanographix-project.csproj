@@ -310,6 +310,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Andrea\Scripts\BalaBehaviour.cs" />
     <Compile Include="Assets\Andrea\Scripts\ButtonCanvasUI.cs" />
     <Compile Include="Assets\Andrea\Scripts\EnemyBehaviour.cs" />
     <Compile Include="Assets\Andrea\Scripts\GameBehaviour.cs" />

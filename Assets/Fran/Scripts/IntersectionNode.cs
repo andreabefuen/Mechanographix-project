@@ -36,11 +36,12 @@ public class IntersectionNode:MonoBehaviour
 
 
             case Movimiento.ANDAR:
-                PlayerMov.MovePlayer(punto1.getPosition());
+                PlayerMov.MoveTarget(punto1.getPosition(), mov);
                 break;
 
 
             case Movimiento.CAER:
+                //PlayerMov.
                 break;
 
 
