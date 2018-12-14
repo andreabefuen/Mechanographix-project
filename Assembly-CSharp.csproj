@@ -85,6 +85,7 @@
     <Compile Include="Assets\Mario\Scripts\ButtonClick.cs" />
     <Compile Include="Assets\Mario\Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\Mario\Scripts\keyClick.cs" />
+    <Compile Include="Assets\Mario\Scripts\PushBall.cs" />
     <Compile Include="Assets\Mario\Scripts\TriggerDetection.cs" />
     <None Include="Assets\Andrea\Scripts\words.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
