@@ -33,6 +33,7 @@ public class BalaBehaviour : MonoBehaviour
         if(other.gameObject.tag == "Enemy")
         {
             GameBehaviour.Score += 100;
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
             Destroy(other.gameObject, 0.5f);
             Destroy(this.gameObject, 0.5f);
         }

@@ -46,6 +46,8 @@ public class SpawnEnemies : MonoBehaviour {
         int aux = Random.Range(0, spawnPoints.Length);
 
         Transform spawn = spawnPoints[aux];
+        spawn.position = new Vector3(spawn.position.x, 0.7f, spawn.position.z);
+        
 
         return spawn;
     }
