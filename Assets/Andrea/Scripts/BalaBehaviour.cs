@@ -8,10 +8,14 @@ public class BalaBehaviour : MonoBehaviour
     public float speed;
     public Transform sphere;
 
+    private AudioSource audio;
+
     // Start is called before the first frame update
     void Start()
     {
         sphere = GetComponentInChildren<Transform>().Find("pSphere4");
+
+        audio = this.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,6 +37,7 @@ public class BalaBehaviour : MonoBehaviour
         if(other.gameObject.tag == "Enemy")
         {
             GameBehaviour.Score += 100;
+            audio.Play();
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
             Destroy(other.gameObject, 0.5f);
             Destroy(this.gameObject, 0.5f);

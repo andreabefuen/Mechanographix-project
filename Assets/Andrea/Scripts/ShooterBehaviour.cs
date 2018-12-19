@@ -8,8 +8,12 @@ public class ShooterBehaviour : MonoBehaviour {
 
     public Transform positionDisparo;
 
+    private AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
+
+        audio = this.gameObject.GetComponent<AudioSource>();
         
 	}
 	
@@ -23,6 +27,7 @@ public class ShooterBehaviour : MonoBehaviour {
         GameObject aux = Instantiate(bala);
         aux.transform.position = positionDisparo.position;
         Debug.Log(positionDisparo.transform.position);
+        audio.Play();
         RaycastHit raycastHit;
         
        // if(Physics.Raycast(transform.position, transform.forward, out raycastHit))
