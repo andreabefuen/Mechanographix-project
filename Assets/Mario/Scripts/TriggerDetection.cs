@@ -8,6 +8,7 @@ public class TriggerDetection : MonoBehaviour
 {
     public KeyCode _key;
     public GameObject dialogBox;
+    public string escena;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +22,7 @@ public class TriggerDetection : MonoBehaviour
         if (other.GetComponent<CharacterMovement>().GetMoving() == false) {
             if (Input.GetKeyDown(_key)) {
                 dialogBox.SetActive(false);
-                SceneManager.LoadScene("EscenaPrueba2");
+                SceneManager.LoadScene(escena);
             }
         }
     }
