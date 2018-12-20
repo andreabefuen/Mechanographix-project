@@ -7945,7 +7945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key: 91
   dialogBox: {fileID: 1489982128}
-  escena: 5
+  escena: 4
 --- !u!65 &1916222934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8019,7 +8019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key: 51
   dialogBox: {fileID: 1489982128}
-  escena: 4
+  escena: 5
 --- !u!65 &1916561116
 BoxCollider:
   m_ObjectHideFlags: 0

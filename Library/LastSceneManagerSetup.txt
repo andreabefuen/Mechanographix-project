@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Blasquete/Scenes/segundaEscena.unity
+- path: Assets/Mario/Scenes/EscenaMarioMenu.unity
   isLoaded: 1
   isActive: 1
