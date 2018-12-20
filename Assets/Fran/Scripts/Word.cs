@@ -45,6 +45,10 @@ public class Word {
         }
         return wordTyped;
     }
+    public void RemoveDisplay()
+    {
+        display.RemoveWord();
+    }
 
     public void ResetIndex()
     {
