@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Mario/Scenes/EscenaPrueba2.unity
     guid: dc2ca4baef233994f829495473321e19
+  - enabled: 1
+    path: Assets/Andrea/Scenes/Scene01.unity
+    guid: ad9e4a86d0065b14ab43838a7efee241
+  - enabled: 1
+    path: Assets/Andrea/Scenes/Scene03.unity
+    guid: 1b5db1b96ebc5b8498ff0ad18797546f
+  - enabled: 1
+    path: Assets/Fran/Nivel1.unity
+    guid: 6f52233f12db75d41afb77bc9b5108bb
+  - enabled: 1
+    path: Assets/Blasquete/Scenes/segundaEscena.unity
+    guid: 5e14a433321a9d14e84a5625015d5249
   m_configObjects: {}

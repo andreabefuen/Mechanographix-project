@@ -5,12 +5,12 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    GameObject[] letters;
+    //GameObject[] letters;
     private GameObject player;
     SpriteRenderer color;
 
     public KeyCode kcode;
-    string keyCode = "A";
+    //string keyCode = "A";
 
     private float dist;
     private float velocity;

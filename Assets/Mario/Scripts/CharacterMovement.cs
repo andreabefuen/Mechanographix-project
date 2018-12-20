@@ -8,10 +8,14 @@ public class CharacterMovement : MonoBehaviour {
     private bool moving;
     private Vector3 goal;
 
+    private Animator anim;
+
     // Use this for initialization
     void Start ()
     {
         goal = transform.position;
+
+        anim = this.gameObject.GetComponent<Animator>();
 	}
 
     // Update is called once per frame
@@ -24,10 +28,13 @@ public class CharacterMovement : MonoBehaviour {
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 0.1f);
             moving = true;
+            anim.SetBool("isWalking", true);
         }
         else if (moving)
         {
             moving = false;
+            anim.SetBool("isWalking", false);
+            
         }
     }
 

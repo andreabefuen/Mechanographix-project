@@ -9,21 +9,21 @@ public class GameController : MonoBehaviour
 
     public Text scoreText;
     public Text levelText;
+    public Text avisoText;
     private int score;
     private int totalScore;
     private int level;
     private float velocity_lvl;
 
-    public Left_Generator left_Generator;
-    public Right_Generator right_Generator;
-
+    public LeftGenerator leftGenerator;
+    public RightGenerator rightGenerator;
     // Use this for initialization
     void Start()
     {
         score = 0;
         totalScore = 0;
         level = 1;
-        velocity_lvl = 1.5f;
+        velocity_lvl = 0.2f;
         UpdateScore();
         UpdateLevel();
     }
@@ -39,11 +39,11 @@ public class GameController : MonoBehaviour
 
     void checkVelocityLvl() {
         if (score < 100)
-            velocity_lvl = 1.5f;
+            velocity_lvl = 0.2f;
         else if (score < 150)
-            velocity_lvl = 3.5f;
+            velocity_lvl = 0.4f;
         else if (score < 200)
-            velocity_lvl = 5f;
+            velocity_lvl = 0.6f;
     }
 
     void checkLevel() {
@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
             UpdateLevel();
 
 
-            left_Generator.stopGeneration();
+            leftGenerator.stopGeneration();
 
             StartCoroutine(cleanLetters());
 
@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour
             score = 0;
             UpdateLevel();
 
-            left_Generator.left_setWorking();
+            leftGenerator.left_setWorking();
 
         }
 
@@ -90,7 +90,7 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForSeconds(5);
 
-        right_Generator.right_setWorking();
+        rightGenerator.right_setWorking();
     }
 
    
@@ -105,12 +105,12 @@ public class GameController : MonoBehaviour
 
     void UpdateScore()
     {
-        scoreText.text = "Score: " + totalScore;
+        scoreText.text = "Puntos: " + totalScore;
     }
 
     void UpdateLevel()
     {
-        levelText.text = "Level: " + level;
+        levelText.text = "Nivel: " + level;
     }
 
     public int getScore()

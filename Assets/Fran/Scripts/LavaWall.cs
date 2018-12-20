@@ -23,7 +23,7 @@ public class LavaWall : MonoBehaviour
         wall.position += Vector3.right * scrollingSpeed * Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
         {

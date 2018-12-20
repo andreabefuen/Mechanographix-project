@@ -31,6 +31,8 @@ public class GameBehaviour : MonoBehaviour {
 
     public GameObject damagePanel;
 
+    private GameObject levelmanager;
+
 
     public void DamagePanelActivate()
     {
@@ -47,6 +49,8 @@ public class GameBehaviour : MonoBehaviour {
         readWords = GetComponent<ReadWords>();
 
         words = readWords.GetWordInFile();
+
+        levelmanager = GameObject.Find("LevelChanger");
 
      
        //
@@ -86,6 +90,11 @@ public class GameBehaviour : MonoBehaviour {
         timerText.text = "TIMER: " + (int) timer;
 
         scoreText.text = "SCORE: " + Score;
+
+        if(timer >= 100)
+        {
+            levelmanager.GetComponent<LevelChanger>().FadeToLevel(3);
+        }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {

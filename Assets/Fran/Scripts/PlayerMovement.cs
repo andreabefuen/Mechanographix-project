@@ -25,12 +25,16 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Victory;
     public GameObject ErrorFlash;
     public GameObject Defeat;
-    
+    AudioSource Sound;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         lavaWall = GameObject.FindGameObjectWithTag("LavaWall").GetComponent<LavaWall>();
+        Sound = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+       
     }
 
     // Update is called once per frame
@@ -44,17 +48,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if(walking||starting||falling||jumping)
-        {                   
+        {
+            
+            if(!Sound.isPlaying)
+                Sound.Play();
             velocity = target - transform.position;
             velocity.Normalize();
             Move();
         }    
         if(Vector3.Distance(transform.position, target)<=0.35f && !starting)
         {
+            
             walking = false;
             climbing = false;
             falling = false;
             jumping = false;
+            
+            
+
+
 
             transform.position = target;
             MoveToStart(nextStart);
@@ -68,9 +80,32 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Vector3.Distance(transform.position, target) <= 0.35f)
         {
+            Sound.Stop();
+
             starting = false;
             transform.position = target;
         }
+
+
+        if(jumping)
+        {
+            anim.SetBool("jumping", true);
+            anim.SetBool("walking", false);
+            anim.SetBool("idle", false);
+        }
+        else if (walking)
+        {
+            anim.SetBool("jumping", false);
+            anim.SetBool("walking", true);
+            anim.SetBool("idle", false);
+        }
+        else if (!falling && !climbing)
+        {
+            anim.SetBool("jumping", false);
+            anim.SetBool("walking", false);
+            anim.SetBool("idle", true);
+        }
+
 
     }
 
@@ -82,17 +117,20 @@ public class PlayerMovement : MonoBehaviour
         {
             case Movimiento.SALTAR:
                 jumping = true;
+                
                 midjump.y = target.y + jumpHeight;
                 midjump.x = (target.x - transform.position.x) / 2;
                 break;
 
 
             case Movimiento.ANDAR:
+
                 walking = true;
                 break;
 
 
             case Movimiento.CAER:
+
                 falling = true;
                 topFall.y = transform.position.y + 4;
                 topFall.x = (target.x - transform.position.x)/2;
@@ -178,8 +216,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Error()
     {                   //SE HA CAIDO UNITY ANSWERS EQUISDE MIRAR COMO SE CAMBIABA EL ALPHA COMO LERP
-        if(lavaWall.scrollingSpeed<10f)
-            lavaWall.scrollingSpeed *= 1.1f;
+        if(lavaWall.scrollingSpeed<15f)
+            lavaWall.scrollingSpeed *= 1.2f;
         ErrorFlash.SetActive(true);
         //ErrorFlash.GetComponent<SpriteRenderer>().
     }
