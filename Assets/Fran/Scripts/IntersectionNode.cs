@@ -17,60 +17,35 @@ public enum Movimiento
 
 public class IntersectionNode:MonoBehaviour
 {
-    Point punto1, punto2, punto3;
-    int puntos = 0;
+    public Point punto1, punto2, punto3;
+    public int puntos = 1;
     Transform intersec;
-
-    PlayerMovement PlayerMov;
-
     
+    public PlayerMovement PlayerMov;
 
-    
 
-    void Move(Movimiento mov)
+
+    private void Awake()
     {
-        switch (mov)
-        {
-            case Movimiento.SALTAR:
-                break;
-
-
-            case Movimiento.ANDAR:
-                PlayerMov.MoveTarget(punto1.getPosition(), mov);
-                break;
-
-
-            case Movimiento.CAER:
-                //PlayerMov.
-                break;
-
-
-            case Movimiento.SUBIR:
-                break;
-
-
-            default:
-                break;
-                //
-        }
-
+        intersec = this.transform;
+        puntos = intersec.childCount - 1;
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerMov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
-        
 
         intersec = this.transform;
-        puntos = intersec.childCount;
+        puntos = intersec.childCount - 1;
 
-        punto1 = new Point(intersec.Find("point1"));
+
+        punto1 = intersec.Find("point1").GetComponent<Point>();
         if (puntos > 1)
-            punto2 = new Point(intersec.Find("point2"));
-        if(puntos>2)
-            punto3 = new Point(intersec.Find("point3"));
+            punto2 = intersec.Find("point2").GetComponent<Point>();
+        if (puntos>2)
+            punto3 = intersec.Find("point3").GetComponent<Point>(); 
 
 
     }
@@ -78,7 +53,7 @@ public class IntersectionNode:MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 }
 

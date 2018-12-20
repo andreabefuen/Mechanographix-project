@@ -7,7 +7,7 @@ public class Point : MonoBehaviour
 
 
     Transform position;
-    public Transform siguiente;
+    public GameObject siguiente;
 
     public Movimiento movType;
 
@@ -21,7 +21,7 @@ public class Point : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        position = this.transform;
     }
 
     // Update is called once per frame

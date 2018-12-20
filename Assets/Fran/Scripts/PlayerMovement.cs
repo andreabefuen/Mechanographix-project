@@ -5,57 +5,97 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    Vector3 target;
-    Transform player;
-    bool moving = false;
-    bool climbing = false;
-    bool falling = false;
-    bool jumping = false;
-    float maxSpeed = 2f;
+    Vector3 target = new Vector3();
+    bool walking = false;
+    public bool climbing = false;
+    public bool falling = false;
+    public bool jumping = false;
+    public bool starting = false;
+    float maxSpeed = 40f;
+    float jumpHeight = 6f;
+    Vector3 midjump = new Vector3(0, 0, 0);
+    Vector3 topFall = new Vector3(0, 0, 0);
+    Vector3 nextStart = new Vector3(0, 0, 0);
+    public float jumpVelocity = 4.5f;
+    Vector3 velocity = new Vector3(0, 0, 0);
+    public bool Goal = false;
+
+    LavaWall lavaWall;
+
+    public GameObject Victory;
+    public GameObject ErrorFlash;
+    public GameObject Defeat;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Transform>();
-        
+        lavaWall = GameObject.FindGameObjectWithTag("LavaWall").GetComponent<LavaWall>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(moving)
+        if(lavaWall.Death )
         {
-            Move();
+            Defeat.SetActive(true);
+            lavaWall.Stop();
+            return;
         }
-        if(Vector3.Distance(transform.position, target)<=0.05f)
+
+        if(walking||starting||falling||jumping)
+        {                   
+            velocity = target - transform.position;
+            velocity.Normalize();
+            Move();
+        }    
+        if(Vector3.Distance(transform.position, target)<=0.35f && !starting)
         {
-            moving = false;
+            walking = false;
             climbing = false;
             falling = false;
             jumping = false;
+
+            transform.position = target;
+            MoveToStart(nextStart);
+            if (Goal)
+            {
+                Victory.SetActive(true);
+                lavaWall.Stop();
+                return;
+            }
+
         }
+        else if (Vector3.Distance(transform.position, target) <= 0.35f)
+        {
+            starting = false;
+            transform.position = target;
+        }
+
     }
 
-
-    public void MoveTarget(Vector3 movePoint, Movimiento mov)
+    public void MoveToTarget(Point punto)
     {
-        target = movePoint;
+        target = punto.getPosition();
 
-        switch (mov)
+        switch (punto.movType)
         {
             case Movimiento.SALTAR:
                 jumping = true;
+                midjump.y = target.y + jumpHeight;
+                midjump.x = (target.x - transform.position.x) / 2;
                 break;
 
 
             case Movimiento.ANDAR:
-                moving = true;
+                walking = true;
                 break;
 
 
             case Movimiento.CAER:
                 falling = true;
+                topFall.y = transform.position.y + 4;
+                topFall.x = (target.x - transform.position.x)/2;
                 break;
 
 
@@ -69,6 +109,83 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        //transform.position += maxSpeed * Time.deltaTime;
+        if (walking || jumping || starting )
+        {
+            //velocity.Normalize();
+            transform.position += velocity * maxSpeed * Time.deltaTime;
+        }
+        if (jumping)
+        {
+            float difference = midjump.y - transform.position.y;
+            if (transform.position.x < midjump.x)
+            {
+                velocity.y = -jumpVelocity * (0.5f + difference / 2f);
+                velocity.x = 0;
+                transform.position += velocity * Time.deltaTime;
+               
+            }
+            else
+            {
+                velocity.y = jumpVelocity * (0.5f + difference / 2f);
+                velocity.x = 0;
+                transform.position += velocity * Time.deltaTime;
+            }
+            velocity.y = 0;
+        }
+        if (falling)
+        {
+            transform.position += velocity * maxSpeed * Time.deltaTime;
+
+            float difference = topFall.y - transform.position.y;
+            if (transform.position.x < topFall.x)
+            {
+                velocity.y = -jumpVelocity * (0.5f + difference / 2f);
+                velocity.x = 0;
+                transform.position += velocity * Time.deltaTime;
+
+            }
+            else
+            {
+                velocity.y = jumpVelocity * (0.5f + difference / 2f);
+                velocity.x = 0;
+                transform.position += velocity * Time.deltaTime;
+            }
+        }
+        velocity = Vector3.zero;
+    }
+
+
+    public void MoveToStart(Vector3 start)
+    {
+        //molaria pausa aqui
+       
+        
+        //StartCoroutine(Example(5, start));        
+        target = start;
+        starting = true;
+    }
+
+    public void GetStart(Vector3 s)
+    {
+        nextStart = s;
+    }
+    
+    IEnumerator Example(float s, Vector3 v)
+    {
+        yield return new WaitForSeconds(s);
+        
+    }
+
+    public void Error()
+    {                   //SE HA CAIDO UNITY ANSWERS EQUISDE MIRAR COMO SE CAMBIABA EL ALPHA COMO LERP
+        if(lavaWall.scrollingSpeed<10f)
+            lavaWall.scrollingSpeed *= 1.1f;
+        ErrorFlash.SetActive(true);
+        //ErrorFlash.GetComponent<SpriteRenderer>().
+    }
+
+    public void FinishGame()
+    {
+        Goal = true;
     }
 }

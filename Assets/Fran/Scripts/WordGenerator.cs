@@ -5,7 +5,7 @@ using UnityEngine;
 public class WordGenerator : MonoBehaviour {
 
 
-    static List<int> utilizados;
+    static List<string> utilizados = new List<string>();
 
     private static string[] wordList ={
         "padre", "moto",
@@ -18,12 +18,26 @@ public class WordGenerator : MonoBehaviour {
    public static string GetRandomWord()
     {
         int randomIndex = Random.Range(0, wordList.Length);
-        /*while(utilizados.Contains(randomIndex))
-        {
-            randomIndex = Random.Range(0, wordList.Length);
+        
+        while(MismaInicial(randomIndex))
+        {           
+                randomIndex = Random.Range(0, wordList.Length);          
         }
-        utilizados.Add(randomIndex);*/
+        utilizados.Add(wordList[randomIndex]);
         string randomWord = wordList[randomIndex];
         return randomWord;
+    }
+
+    static bool MismaInicial(int index)
+    {
+        foreach (string palabra in utilizados)
+        {
+            if (wordList[index][0] == palabra[0])
+            {
+                return true;
+            }
+ 
+        }
+        return false;
     }
 }
