@@ -38,8 +38,11 @@ public class BalaBehaviour : MonoBehaviour
         {
             GameBehaviour.Score += 100;
             audio.Play();
+            other.gameObject.GetComponent<Animator>().SetBool("isDead", true);
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
-            Destroy(other.gameObject, 0.5f);
+            other.gameObject.GetComponent<BoxCollider>().enabled = false;
+            sphere.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            Destroy(other.gameObject, 1.8f);
             Destroy(this.gameObject, 0.5f);
         }
     }

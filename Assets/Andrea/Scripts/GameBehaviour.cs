@@ -29,6 +29,19 @@ public class GameBehaviour : MonoBehaviour {
     private string[] words;
 
 
+    public GameObject damagePanel;
+
+
+    public void DamagePanelActivate()
+    {
+        damagePanel.SetActive(true);
+        Invoke("DamagePanelDesactive", 0.2f);
+    }
+    void DamagePanelDesactive()
+    {
+        damagePanel.SetActive(false);
+    }
+
     private void Awake()
     {
         readWords = GetComponent<ReadWords>();
