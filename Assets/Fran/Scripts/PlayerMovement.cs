@@ -26,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject ErrorFlash;
     public GameObject Defeat;
     AudioSource Sound;
-    Animator anim;
+    public Animator anim;
+    public bool waiting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         lavaWall = GameObject.FindGameObjectWithTag("LavaWall").GetComponent<LavaWall>();
         Sound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        
        
     }
 
@@ -54,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
                 Sound.Play();
             velocity = target - transform.position;
             velocity.Normalize();
+            waiting = false;
             Move();
         }    
         if(Vector3.Distance(transform.position, target)<=0.35f && !starting)
@@ -63,13 +66,12 @@ public class PlayerMovement : MonoBehaviour
             climbing = false;
             falling = false;
             jumping = false;
-            
-            
-
-
 
             transform.position = target;
-            MoveToStart(nextStart);
+            if(!waiting)
+            {
+                MoveToStart(nextStart);
+            }
             if (Goal)
             {
                 Victory.SetActive(true);
@@ -84,24 +86,25 @@ public class PlayerMovement : MonoBehaviour
 
             starting = false;
             transform.position = target;
+            waiting = true;
         }
 
 
-        if(jumping)
-        {
-            anim.SetBool("jumping", true);
-            anim.SetBool("walking", false);
-            anim.SetBool("idle", false);
-        }
-        else if (walking)
+        if (walking || starting || jumping)
         {
             anim.SetBool("jumping", false);
             anim.SetBool("walking", true);
             anim.SetBool("idle", false);
         }
+        else if (falling)
+        {
+            anim.SetBool("jumping", true);
+            anim.SetBool("walking", false);
+            anim.SetBool("idle", false);
+        }
         else if (!falling && !climbing)
         {
-            anim.SetBool("jumping", false);
+            //anim.SetBool("jumping", false);
             anim.SetBool("walking", false);
             anim.SetBool("idle", true);
         }

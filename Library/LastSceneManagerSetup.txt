@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Mario/Scenes/EscenaMarioMenu.unity
+- path: Assets/Fran/Nivel1.unity
   isLoaded: 1
   isActive: 1

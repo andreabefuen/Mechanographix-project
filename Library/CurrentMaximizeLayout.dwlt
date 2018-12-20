@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 498}
   m_MaxSize: {x: 18004, y: 14048}
   vertical: 0
-  controlID: 155
+  controlID: 441
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_MinSize: {x: 432, y: 498}
   m_MaxSize: {x: 14002, y: 14048}
   vertical: 1
-  controlID: 135
+  controlID: 442
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 224}
   m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 66
+  controlID: 337
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -212,21 +212,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c8f8ffff66fbffff906e0000
+      m_ExpandedIDs: 92c3fcff46d3fcff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Escena3Trigger
-        m_OriginalName: Escena3Trigger
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 28358
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 5}
       m_SearchString: 
@@ -255,8 +255,8 @@ MonoBehaviour:
     y: 0
     width: 944
     height: 500
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -509,7 +509,7 @@ MonoBehaviour:
   m_MinSize: {x: 432, y: 274}
   m_MaxSize: {x: 14002, y: 10024}
   vertical: 0
-  controlID: 136
+  controlID: 443
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -576,20 +576,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Mario/Scenes
+    - Assets/Fran
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Mario/Scenes
+  - Assets/Fran
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: F:\Mis cosas\Mechanographix-project
+  m_LastProjectPath: C:\Users\Fran\Documents\GitHub\Mechanographix-project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 822}
-    m_SelectedIDs: bc310000
-    m_LastClickedID: 12732
-    m_ExpandedIDs: 000000003e280000362900001a2a0000842b0000262e00003e310000f0310000b8320000da3300006434000090340000bc3400002e3500006636000072360000f03800004639000072390000ac3900003c3a0000843c0000c85e0000ce5e0000626300003e6400004a6400008664000088640000f46400002465000072660000ac670000ec6c0000ee6c0000f06c0000f26c000000ca9a3b
+    scrollPos: {x: 0, y: 95}
+    m_SelectedIDs: dad40000
+    m_LastClickedID: 54490
+    m_ExpandedIDs: 0000000024c8000000c90000d4c9000038cb0000e4cc0000e0cf00008cd0000046d1000054d20000dcd2000008d3000034d300009ad30000ced40000dad4000030d7000086d70000a4d70000ded700006cd800007ada00008adf00008edf0000cee30000aae40000b6e40000f0e40000f2e4000050e5000080e500009ee60000cae700005cf300005ef3000060f3000062f3000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -617,7 +617,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003e280000362900001a2a0000842b0000262e00003e310000f0310000b8320000da3300006434000090340000bc3400002e3500006636000072360000f03800004639000072390000ac3900003c3a0000843c0000c85e0000ce5e0000626300003e6400004a6400008664000088640000f46400002465000072660000ac670000ec6c0000ee6c0000f06c0000f26c0000
+    m_ExpandedIDs: 0000000024c8000000c90000d4c9000038cb0000e4cc0000e0cf00008cd0000046d1000054d20000dcd2000008d3000034d300009ad30000ced40000dad4000030d7000086d70000a4d70000ded700006cd800007ada00008adf00008edf0000cee30000aae40000b6e40000f0e40000f2e4000050e5000080e500009ee60000cae700005cf300005ef3000060f3000062f3000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -642,9 +642,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: c66e0000
-    m_LastClickedInstanceID: 28358
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000401e0000d4400000541b0000c25e0200
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -746,8 +746,8 @@ MonoBehaviour:
     y: 0
     width: 448
     height: 431
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
