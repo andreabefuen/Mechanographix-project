@@ -82,6 +82,7 @@
     <Compile Include="Assets\Fran\Scripts\WordInput.cs" />
     <Compile Include="Assets\Fran\Scripts\WordManager.cs" />
     <Compile Include="Assets\Fran\Scripts\WordSpawner.cs" />
+    <Compile Include="Assets\LevelChanger.cs" />
     <Compile Include="Assets\Mario\Scripts\ButtonClick.cs" />
     <Compile Include="Assets\Mario\Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\Mario\Scripts\keyClick.cs" />

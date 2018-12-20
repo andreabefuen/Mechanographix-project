@@ -8,7 +8,15 @@ public class TriggerDetection : MonoBehaviour
 {
     public KeyCode _key;
     public GameObject dialogBox;
-    public string escena;
+    public int escena;
+    LevelChanger levelChanger;
+    
+    
+
+    private void Awake()
+    {
+        levelChanger = FindObjectOfType<LevelChanger>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,11 +26,10 @@ public class TriggerDetection : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        print("hola");
         if (other.GetComponent<CharacterMovement>().GetMoving() == false) {
             if (Input.GetKeyDown(_key)) {
                 dialogBox.SetActive(false);
-                SceneManager.LoadScene(escena);
+                levelChanger.FadeToLevel(escena);
             }
         }
     }
