@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     private int level;
     private float velocity_lvl;
 
+    public ExitLevel exitLevel;
+
     public LeftGenerator leftGenerator;
     public RightGenerator rightGenerator;
     // Use this for initialization
@@ -24,6 +26,8 @@ public class GameController : MonoBehaviour
         totalScore = 0;
         level = 1;
         velocity_lvl = 0.2f;
+        avisoText.text = "Elimina a los enemigos utilizando solo la mano izquierda." +
+            "¡Cuidado, cada vez irán más rápido!";
         UpdateScore();
         UpdateLevel();
     }
@@ -53,6 +57,8 @@ public class GameController : MonoBehaviour
             score = 0;
             UpdateLevel();
 
+            avisoText.text = "¡Genial! Ahora utiliza la mano derecha." +
+                "Prepárate.";
 
             leftGenerator.stopGeneration();
 
@@ -67,16 +73,33 @@ public class GameController : MonoBehaviour
             score = 0;
             UpdateLevel();
 
+            avisoText.text = "¡Perfecto! El último paso: por ambos lados." +
+                "¡Ya queda poco!";
+
             leftGenerator.left_setWorking();
 
         }
 
         else if (totalScore == 600 && level == 3)
         {
-            level = 4;
             score = 0;
-            UpdateLevel();
+            StartCoroutine(cleanLetters());
+            leftGenerator.stopGeneration();
+            rightGenerator.stopGeneration();
+            StartCoroutine(theEnd());
+            
+            
         }
+    }
+
+    IEnumerator theEnd() {
+
+        
+        avisoText.text = "¡ENHORABUENA, HAS VENCIDO!";
+
+        yield return new WaitForSeconds(3);
+
+        exitLevel.gameObject.GetComponent<LevelChanger>().FadeToLevel(0);
     }
 
     IEnumerator cleanLetters()
