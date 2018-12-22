@@ -19,14 +19,16 @@ public class PlayerMovement : MonoBehaviour
     public float jumpVelocity = 4.5f;
     Vector3 velocity = new Vector3(0, 0, 0);
     public bool Goal = false;
+    public bool getDamage = false;
 
     LavaWall lavaWall;
-
+    LevelChanger Level;
     public GameObject Victory;
     public GameObject ErrorFlash;
     public GameObject Defeat;
+    public GameObject Imagen;
     AudioSource Sound;
-    public Animator anim;
+    Animator anim;
     public bool waiting = false;
 
     // Start is called before the first frame update
@@ -35,80 +37,121 @@ public class PlayerMovement : MonoBehaviour
         lavaWall = GameObject.FindGameObjectWithTag("LavaWall").GetComponent<LavaWall>();
         Sound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
-        
-       
+        Level =GameObject.FindGameObjectWithTag("GameSystem").GetComponent<LevelChanger>();
+        //Time.timeScale = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(lavaWall.Death )
+        if (!Imagen.activeInHierarchy)
         {
-            Defeat.SetActive(true);
-            lavaWall.Stop();
-            return;
-        }
+            Time.timeScale = 1;
 
-        if(walking||starting||falling||jumping)
-        {
-            
-            if(!Sound.isPlaying)
-                Sound.Play();
-            velocity = target - transform.position;
-            velocity.Normalize();
-            waiting = false;
-            Move();
-        }    
-        if(Vector3.Distance(transform.position, target)<=0.35f && !starting)
-        {
-            
-            walking = false;
-            climbing = false;
-            falling = false;
-            jumping = false;
-
-            transform.position = target;
-            if(!waiting)
+            if (lavaWall.Death)
             {
-                MoveToStart(nextStart);
-            }
-            if (Goal)
-            {
-                Victory.SetActive(true);
+                Defeat.SetActive(true);
                 lavaWall.Stop();
                 return;
             }
 
-        }
-        else if (Vector3.Distance(transform.position, target) <= 0.35f)
-        {
-            Sound.Stop();
+            if (walking || starting || falling || jumping)
+            {
 
-            starting = false;
-            transform.position = target;
-            waiting = true;
-        }
+                if (!Sound.isPlaying)
+                    Sound.Play();
+                velocity = target - transform.position;
+                velocity.Normalize();
+                waiting = false;
+                Move();
+            }
+            if (Vector3.Distance(transform.position, target) <= 0.35f && !starting)
+            {
+
+                walking = false;
+                climbing = false;
+                falling = false;
+                jumping = false;
+
+                transform.position = target;
+                if (!waiting)
+                {
+                    MoveToStart(nextStart);
+                }
+                if (Goal)
+                {
+                    Victory.SetActive(true);
+                    lavaWall.Stop();
+                    StartCoroutine(Wait(3));
+
+                }
+
+            }
+            else if (Vector3.Distance(transform.position, target) <= 0.35f)
+            {
+                Sound.Stop();
+
+                starting = false;
+                transform.position = target;
+                waiting = true;
+            }
 
 
-        if (walking || starting || jumping)
-        {
-            anim.SetBool("jumping", false);
-            anim.SetBool("walking", true);
-            anim.SetBool("idle", false);
-        }
-        else if (falling)
-        {
-            anim.SetBool("jumping", true);
-            anim.SetBool("walking", false);
-            anim.SetBool("idle", false);
-        }
-        else if (!falling && !climbing)
-        {
-            //anim.SetBool("jumping", false);
-            anim.SetBool("walking", false);
-            anim.SetBool("idle", true);
-        }
+            if (walking || starting || jumping)
+            {
+                anim.SetBool("jumping", false);
+                anim.SetBool("walking", true);
+                anim.SetBool("idle", false);
+            }
+            else if (falling)
+            {
+                anim.SetBool("jumping", true);
+                anim.SetBool("walking", false);
+                anim.SetBool("idle", false);
+            }
+            else if (!falling && !climbing)
+            {
+                anim.SetBool("jumping", false);
+                anim.SetBool("walking", false);
+                anim.SetBool("idle", true);
+            }
+            /*
+                    SpriteRenderer lava = lavaWall.GetComponent<SpriteRenderer>();
+                    lava.sharedMaterial.SetTextureOffset("lava", new Vector2(2,2));
+            */
 
+
+            SpriteRenderer bloodImage = ErrorFlash.GetComponent<SpriteRenderer>();
+            if (getDamage)
+            {
+                Color Opaque = new Color(1, 1, 1, 1);
+                ErrorFlash.SetActive(true);
+                bloodImage.color = Color.Lerp(bloodImage.color, Opaque, 20 * Time.deltaTime);
+                if (bloodImage.color.a >= 0.8) //Almost Opaque, close enough
+                {
+                    getDamage = false;
+                }
+            }
+            if (!getDamage)
+            {
+
+                Color Transparent = new Color(1, 1, 1, 0);
+                bloodImage.color = Color.Lerp(bloodImage.color, Transparent, 20 * Time.deltaTime);
+                ErrorFlash.SetActive(false);
+            }
+
+        }
+        else
+        {
+            Time.timeScale = 0;
+            if(Input.GetKeyDown("return"))
+            {
+                Imagen.SetActive(false);
+            }
+
+              
+        }
 
     }
 
@@ -211,18 +254,23 @@ public class PlayerMovement : MonoBehaviour
         nextStart = s;
     }
     
-    IEnumerator Example(float s, Vector3 v)
+    IEnumerator Wait(float s)
     {
         yield return new WaitForSeconds(s);
+        Level.FadeToLevel(0);
         
     }
 
     public void Error()
-    {                   //SE HA CAIDO UNITY ANSWERS EQUISDE MIRAR COMO SE CAMBIABA EL ALPHA COMO LERP
+    {
+
+        getDamage = true;
+    
+
         if(lavaWall.scrollingSpeed<15f)
             lavaWall.scrollingSpeed *= 1.2f;
-        ErrorFlash.SetActive(true);
-        //ErrorFlash.GetComponent<SpriteRenderer>().
+
+  
     }
 
     public void FinishGame()

@@ -21,6 +21,7 @@ public class WordManager : MonoBehaviour {
     GameObject WordToMove;
     Vector3 WordPosition;
     bool wordOnScreen;
+
     
 
     private void Awake()
@@ -65,6 +66,8 @@ public class WordManager : MonoBehaviour {
 
     public void TypeLetter(char letter) 
     {
+        
+
         //Debug.Log("letra:" + letter + ".");
         if ((letter.Equals('\b') || letter.Equals(KeyCode.Backspace)) && hasActiveWord)
         {
@@ -72,7 +75,8 @@ public class WordManager : MonoBehaviour {
             hasActiveWord = false;
             activeWord.ResetIndex();
 
-        }        
+        }
+        
         else if (hasActiveWord)         
         {
             if(activeWord.GetNextLetter()==letter)
@@ -82,7 +86,8 @@ public class WordManager : MonoBehaviour {
             else///////ERRROR A MITAD DE PALABRA
             {
                 //Debug.Log("laca:  caste" );
-                Error();
+               
+                    Error();
             }
             //check if letter was next
             //remove from word
@@ -102,7 +107,8 @@ public class WordManager : MonoBehaviour {
                 else      ///////ERRROR AL EMPEZAR PALABRA
                 {
                     //Debug.Log("laca:  caste con la primera");
-                    Error();
+                   
+                        Error();
                 }
             }
         }
@@ -146,10 +152,6 @@ public class WordManager : MonoBehaviour {
                     AddWord(i);
                 }
             }
-
-
-
-
         }
     }
 
