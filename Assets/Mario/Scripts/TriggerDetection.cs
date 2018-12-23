@@ -21,7 +21,17 @@ public class TriggerDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         dialogBox.SetActive(true);
-        dialogBox.GetComponentInChildren<Text>().text = "si pulsas la tecla: " + _key.ToString() + " entrarás al minijuego";
+        switch (_key) {
+            case KeyCode.Alpha3:
+                dialogBox.GetComponentInChildren<Text>().text = "si pulsas la tecla: 3 entrarás al minijuego";
+                break;
+            case KeyCode.Alpha7:
+                dialogBox.GetComponentInChildren<Text>().text = "si pulsas la tecla: 7 entrarás al minijuego";
+                break;
+            case KeyCode.LeftBracket:
+                dialogBox.GetComponentInChildren<Text>().text = "si pulsas la tecla: ? entrarás al minijuego";
+                break;
+        }
     }
 
     void OnTriggerStay(Collider other)
